@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import Button from "./Button";
+import { useNavigate } from 'react-router-dom';
+import Button from './Button';
 
 function BackButton() {
   const navigate = useNavigate();
@@ -7,7 +7,7 @@ function BackButton() {
   return (
     <Button
       type="back"
-      onClick={(e) => {
+      onClick={e => {
         e.preventDefault();
         navigate(-1);
       }}

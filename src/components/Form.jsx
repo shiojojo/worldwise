@@ -91,8 +91,8 @@ function Form() {
 
   if (isLoadingGeocoding) return <Spinner />;
 
-  // if (!lat && !lng)
-  //   return <Message message="Start by clicking somewhere on the map" />;
+  if (!lat && !lng)
+    return <Message message="Start by clicking somewhere on the map" />;
 
   if (geocodingError) return <Message message={geocodingError} />;
 
@@ -133,16 +133,7 @@ function Form() {
 
       <div className={styles.buttons}>
         <Button type="primary">Add</Button>
-        {/* <BackButton /> */}
-        <Button
-          type="back"
-          onClick={e => {
-            e.preventDefault();
-            navigate(-1);
-          }}
-        >
-          &larr; Back
-        </Button>
+        <BackButton />
       </div>
     </form>
   );

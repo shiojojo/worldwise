@@ -16,10 +16,6 @@ import { useUrlPosition } from '../hooks/useUrlPosition';
 import Button from './Button';
 
 function Map() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const lat = searchParams.get('lat');
-  const lng = searchParams.get('lng');
-
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const {
@@ -28,7 +24,7 @@ function Map() {
     getPosition,
   } = useGeolocation();
   const [mapLat, mapLng] = useUrlPosition();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(
     function () {
@@ -46,14 +42,10 @@ function Map() {
   );
 
   return (
-    <div className={styles.mapContainer} onClick={() => navigate('form')}>
-      <h1>Map</h1>
-      <h1>
-        Position: {lat}, {lng}
-      </h1>
-      {/* {!geolocationPosition && (
+    <div className={styles.mapContainer}>
+      {!geolocationPosition && (
         <Button type="position" onClick={getPosition}>
-          {isLoadingPosition ? "Loading..." : "Use your position"}
+          {isLoadingPosition ? 'Loading...' : 'Use your position'}
         </Button>
       )}
 
@@ -67,7 +59,7 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        {cities.map((city) => (
+        {cities.map(city => (
           <Marker
             position={[city.position.lat, city.position.lng]}
             key={city.id}
@@ -80,7 +72,7 @@ function Map() {
 
         <ChangeCenter position={mapPosition} />
         <DetectClick />
-      </MapContainer> */}
+      </MapContainer>
     </div>
   );
 }
